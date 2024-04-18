@@ -1,23 +1,25 @@
-import "./App.css";
+import { Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { useState, useEffect } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import PageNotFound from "../PageNotFound/PageNotFound";
+
+import "./App.css";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const [errorPage, setErrorPage] = useState(false);
   const navigate = useNavigate();
   // const location = useLocation();
   // const { pathname } = location;
   // const { search } = location;
 
   return (
-    <div className="App">
+    <div className="app">
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route
@@ -43,13 +45,13 @@ function App() {
             }
           />
 
-          <Route
-            path="*"
-            // element={<PageNotFound setErrorPage={setErrorPage} />}
-            element={<PageNotFound />}
-          />
+          {/* <Route
+            path={"*"}
+            element={<PageNotFound setErrorPage={setErrorPage} />}
+          /> */}
         </Routes>
       </CurrentUserContext.Provider>
+      <h2>Просто текст на главной</h2>
     </div>
   );
 }
