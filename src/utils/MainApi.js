@@ -5,7 +5,7 @@ function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Произошла ошибка: ${res.status}`); // если ошибка, отклоняем промис
+  return Promise.reject(`Произошла ошибка: ${res.status}`);
 }
 
 export const register = ({ name, password, email }) => {
@@ -31,16 +31,11 @@ export const authorize = ({ password, email }) => {
 };
 
 export const getContent = (token) => {
-  return fetch(`${BASE_URL}users/`, {
-    method: "GET",
+  return fetch(`${BASE_URL}users/me`, {
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    credentials: "include",
-  })
-    .then((res) => checkResponse(res))
-    .then((data) => data);
+  }).then((res) => checkResponse(res));
 };
 
 //Запросить информацию о пользователе с сервера
@@ -56,7 +51,7 @@ export const getUserInfo = () => {
 
 //Записать обновленную информацию о пользователе на сервер
 export const setUserInfo = ({ name, email }) => {
-  return fetch(`${BASE_URL}users/me/`, {
+  return fetch(`${BASE_URL}users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -69,14 +64,3 @@ export const setUserInfo = ({ name, email }) => {
     }),
   }).then((res) => checkResponse(res));
 };
-
-export const getSavedMovies = () => {
-  return fetch(`${BASE_URL}movies/`, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    },
-  })
-  .then((res) => checkResponse(res));
-}

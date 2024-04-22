@@ -1,66 +1,24 @@
-import React, { useEffect } from "react";
-// import Card from "./Card";
+import React from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
+import FormRequest from '../FormRequest/FormRequest';
 
-function Main({
-  onEditProfile,
-  onAddPlace,
-  onEditAvatar,
-  // onCardClick,
-  // onCardLike,
-  // cards,
-  // onConfirmDelete,
-}) {
+
+
+function Main() {
   const currentUser = useContext(CurrentUserContext);
-  // console.log(currentUser)
+  console.log(currentUser);
   return (
     <main>
       <section className="profile">
-        <div className="profile__info">
-          <div className="profile__avatar">
-            <img
-              src={currentUser.avatar}
-              alt="Фотография пользователя"
-              className="profile__main-photo"
-            />
-            <button
-              onClick={onEditAvatar}
-              type="submit"
-              className="profile__edit-button-avatar"
-            ></button>
-          </div>
-          <div className="profile__heading">
-            <div className="profile__title">
-              <h1 className="profile__name">{currentUser.name}</h1>
-              <button
-                onClick={onEditProfile}
-                type="button"
-                className="profile__edit-button"
-              ></button>
-            </div>
-            <p className="profile__job">О пользователе</p>
-          </div>
-        </div>
-        <button
-          onClick={onAddPlace}
-          type="button"
-          className="profile__addbutton"
-        ></button>
+        <h3 className="profile__name">{currentUser.name}</h3>
+        <h3 className="profile__email">{currentUser.email}</h3>
       </section>
-      {/* <section className="places">
-        <ul className="places__photo-cards">
-          {cards.map((card) => (
-            <Card
-              key={card._id}
-              card={card}
-              onCardClick={onCardClick}
-              onCardLike={onCardLike}
-              onConfirmDelete={onConfirmDelete}
-            />
-          ))}
-        </ul>
-      </section> */}
+      <article>
+
+      <FormRequest />
+
+      </article>
     </main>
   );
 }

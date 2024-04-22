@@ -12,3 +12,17 @@
     position: relative;
   }
 }
+
+.btn {
+  border: 2px, red, solid;
+  display: inline-block;
+  flex-direction: column;
+  background-color: rgb(66, 184, 109);
+  text-decoration: none;
+  padding: 10px;
+  color: white;
+}
+
+.lol {
+  font-size: 50px;
+}

@@ -4,6 +4,7 @@ import {
   Navigate,
   useNavigate,
   useLocation,
+  Link,
 } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { useState, useEffect, useContext } from "react";
@@ -20,7 +21,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorPage, setErrorPage] = useState(false);
   const [emailUser, setEmailUser] = useState("");
   const [nameUser, setNameUser] = useState("");
   const [isStatusLoginError, setIsStatusLoginError] = useState(false);
@@ -28,94 +28,61 @@ function App() {
   const location = useLocation();
   const { pathname } = location;
   const { search } = location;
+  const [errorPage, setErrorPage] = useState(false);
 
-  ////////////////////////////////
-
-  function handleCheckStatusLoginError() {
-    setIsStatusLoginError(true);
-  }
-
-  // const tokenCheck = () => {
-  //   const jwt = localStorage.getItem("jwt");
-  //   if (jwt) {
-  //     MainApi.getContent(jwt)
-  //       .then((user) => {
-  //         handleLogin(user);
-  //         navigate(`${pathname}${search}`, { replace: true });
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // };
-
-  const handleLogin = (user) => {
-    setLoggedIn(true);
-    setEmailUser(user.email);
-    setNameUser(user.name);
-    console.log(user.email);
-    console.log(user.name);
-  };
-
-  function handleCheckRegister(name, password, email) {
+  const handleCheckRegister = (name, password, email) => {
     MainApi.register({ name, password, email })
-      .then((res) => {
+      .then((data) => {
         handleCheckLogin(password, email);
         navigate("/", { replace: true });
       })
       .catch((err) => {
-        handleCheckStatusLoginError(err);
-        console.log(`ошибка ${err}`);
+        console.log(`ошибка регистрации ${err}`);
       });
-  }
+  };
 
-  function handleCheckLogin(password, email) {
+  const handleCheckLogin = (password, email) => {
     MainApi.authorize({ password, email })
-      .then((res) => {
-        if (res.accessToken) {
-          console.log(res);
-          localStorage.setItem("jwt", res.accessToken);
-          localStorage.setItem("user", JSON.stringify(res.user));
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("jwt", data.accessToken);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          // Хранение чувствительных данных в localStorage может быть потенциально небезопасным,
+          // так как они доступны через JavaScript и могут быть скомпрометированы при XSS атаках.
+          // Всегда стоит проверять JWT на сервере для подтверждения аутентификации.
+          // Но в данном случае json-server не позволяет без дополнительных телодвижений реализовать данный функционал.
+          localStorage.setItem("loggedIn", "true");
+          // Устанавливаем состояние
           setLoggedIn(true);
-          handleLogin({ password, email });
+          setCurrentUser(data.user);
+          setNameUser(data.user.name);
+          setEmailUser(data.user.email);
           navigate("/", { replace: true });
         }
       })
       .catch((err) => {
-        handleCheckStatusLoginError();
-        console.log(`ошибка ${err}`);
+        console.log(`Ошибка при авторизации: ${err}`);
       });
-  }
-  ///////////////////////////////
-
-  // function singOut() {
-  //   localStorage.removeItem("jwt");
-  //   setLoggedIn(false);
-  //   navigate("/signin");
-  // }
-
-  // useEffect(() => {
-  //   tokenCheck();
-  // }, [loggedIn]);
-
-  // useEffect(() => {
-  // }, [])
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     MainApi.getUserInfo()
-  //       .then((user) => {
-  //         setCurrentUser(user);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [loggedIn]);
+  };
 
   useEffect(() => {
-    setCurrentUser(JSON.parse(localStorage.getItem('user')))
-  }, [])
+    setCurrentUser(JSON.parse(localStorage.getItem("user")));
+    setLoggedIn(JSON.parse(localStorage.getItem("loggedIn")));
+  }, [loggedIn]);
 
-  console.log(loggedIn);
+  const handleLogout = () => {
+    // Очищаем данные в localStorage
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("user");
+    // Сбрасываем состояния
+    setLoggedIn(false);
+    setCurrentUser({});
+    setEmailUser("");
+    setNameUser("");
+    // Перенаправление на страницу входа
+    navigate("/signin", { replace: true });
+  };
 
   return (
     <div className="app">
@@ -142,29 +109,34 @@ function App() {
             }
           />
 
-          {/* <Route
+          <Route
             path={"*"}
             element={<PageNotFound setErrorPage={setErrorPage} />}
-          /> */}
+          />
           <Route
             path="/"
             element={<ProtectedRoute element={Main} loggedIn={loggedIn} />}
           />
 
-          {/* <Route
+          <Route
             path="/"
-            element={
-              // loggedIn ? (
-                // <Navigate to="/" />
-              // ) : (
-                <Main />
-                // <Login />
-
-             } */}
-          {/* /> */}
+            element={loggedIn ? <Navigate to="/" /> : <Login />}
+          />
         </Routes>
       </CurrentUserContext.Provider>
-      <h2>Просто текст на главной</h2>
+      <Link className="btn" to="/">
+        Главная
+      </Link>
+      <Link className="btn" to="/signup">
+        Регистрация
+      </Link>
+      <Link className="btn" to="/signin">
+        Войти
+      </Link>
+      <button type="button" onClick={handleLogout}>
+        {" "}
+        Выйти из аккаунта
+      </button>
     </div>
   );
 }
