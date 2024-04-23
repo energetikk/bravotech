@@ -15,6 +15,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import * as MainApi from "../../utils/MainApi";
 import Main from "../Main/Main";
 import Table from "../Table/Table";
+import FormRequest from "../FormRequest/FormRequest";
 import "./App.css";
 
 function App() {
@@ -114,8 +115,14 @@ function App() {
             element={<PageNotFound setErrorPage={setErrorPage} />}
           />
           <Route
+            path="/"
+            element={<ProtectedRoute element={Main} loggedIn={loggedIn} handleLogout={handleLogout} />}
+          />
+          <Route
             path="/form"
-            element={<ProtectedRoute element={Main} loggedIn={loggedIn} />}
+            element={
+              <ProtectedRoute element={FormRequest} loggedIn={loggedIn} />
+            }
           />
           <Route
             path="/table"
@@ -127,25 +134,21 @@ function App() {
           />
         </Routes>
       </CurrentUserContext.Provider>
+
       <Link className="btn" to="/">
         Главная
       </Link>
-      <Link className="btn" to="/signup">
+      {/* <Link className="btn" to="/signup">
         Регистрация
-      </Link>
-      <Link className="btn" to="/signin">
-        Войти
-      </Link>
-      <Link className="btn" to="/form">
-        Форма
-      </Link>
-      <Link className="btn" to="/table">
-        Таблица
-      </Link>
-      <button type="button" onClick={handleLogout}>
-        {" "}
+      </Link> */}
+
+      {loggedIn ? (<Link className="btn" type="button" onClick={handleLogout}>
         Выйти из аккаунта
-      </button>
+      </Link>) : (<Link className="btn" to="/signin">
+        Войти
+      </Link>)}
+
+
     </div>
   );
 }

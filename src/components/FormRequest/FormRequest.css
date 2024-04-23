@@ -1,0 +1,9 @@
+.form__error {
+  color: red;
+  font-size: 10px;
+  display: none
+}
+
+.form__error_active {
+  display: block;
+}

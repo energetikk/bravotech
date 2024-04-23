@@ -3,172 +3,67 @@
     {
       "email": "koko@mail.ru",
       "password": "$2a$10$tnxTOznveb9qGj55.Iker..EhiRPdtldpfNCJ0qX0xO1h4cpgWSUW",
-      "name": "Иванов",
+      "name": "Синицын В.П.",
       "id": 1
     },
     {
       "email": "pavel@mail.ru",
       "password": "$2a$10$nZanH7jUHXIW.ZmGRc3Yb.rS3oP2En1.agu9Zq4sC.tuuhN8JSajK",
-      "name": "pavel",
+      "name": "Симонов В.В.",
       "id": 2
     },
     {
       "email": "www@mail.ru",
       "password": "$2a$10$nU7ErWfRkt.3sCBE9VHPdezePeWJt0bQdOKJd0lGru2D5pkFPnrdi",
-      "name": "Иванов СГ",
+      "name": "Иванов С.Г.",
       "id": 3
-    },
-    {
-      "email": "ttt@mail.ru",
-      "password": "$2a$10$wplNnzP2HMKAT4Z3.FHjK..H4TkOrnxStJB0o4F2FDe6uL4Ic1aRW",
-      "name": "TTT",
-      "id": 4
-    },
-    {
-      "email": "111@mail.ru",
-      "password": "$2a$10$WqKjs4IvxLi6tVMyDm7Uq.1Ubw2c8.e6SXux5JhFReYAz.13OCioG",
-      "name": "Сидоров А.В.",
-      "id": 5
-    },
-    {
-      "email": "qqq@mail.ru",
-      "password": "$2a$10$dpzQ5jqOsOhgoiMTxqZrc.1LdmtLbeKQNsfrg3nj0VZL7ru6naMea",
-      "name": "qqq",
-      "id": 6
-    }
-  ],
-  "constructors": [
-    {
-      "id": "1",
-      "name": "Конструктор 1"
-    },
-    {
-      "id": "2",
-      "name": "Конструктор 2"
-    },
-    {
-      "id": "3",
-      "name": "Конструктор 3"
-    },
-    {
-      "id": "4",
-      "name": "Конструктор 4"
-    },
-    {
-      "id": "5",
-      "name": "Конструктор 5"
     }
   ],
   "docs": [
     {
-      "id": "1",
-      "title": "ГОСТ 1",
-      "userId": 2
+      "title": "СТО 190-12",
+      "userId": "1",
+      "id": "1"
     },
     {
-      "id": "2",
-      "title": "ГОСТ 2",
-      "userId": 2
+      "title": "СТО 190-12",
+      "userId": "2",
+      "id": "2"
     },
     {
       "id": "3",
-      "title": "ГОСТ 3",
-      "userId": 2
+      "title": "ГОСТ 123",
+      "userId": "1"
     },
     {
-      "title": "kok",
-      "userId": "1",
+      "title": "ГОСТ 123",
+      "userId": "2",
       "id": "BedorLF"
     },
     {
-      "title": "kok",
-      "userId": "1",
+      "title": "ГОСТ 123",
+      "userId": "3",
       "id": "70H3itP"
     },
     {
-      "title": "kok",
+      "title": "ГОСТ 1167-2015",
       "userId": "1",
       "id": "ibWFIWu"
     },
     {
-      "title": "kok",
+      "title": "ГОСТ 1777-98",
       "userId": "3",
       "id": "Iy_xWAs"
     },
     {
-      "title": "kok",
-      "userId": "3",
+      "title": "ГОСТ 1777-98",
+      "userId": "2",
       "id": "VXeOK_q"
     },
     {
-      "title": "kok",
-      "userId": "3",
-      "id": "SR_I61H"
-    },
-    {
-      "title": "kok",
-      "userId": "3",
-      "id": "r39gQwk"
-    },
-    {
-      "title": "rewrwer",
+      "title": "ГОСТ 1777-98",
       "userId": "1",
-      "id": "tLyhEHM"
-    },
-    {
-      "title": "g",
-      "userId": "1",
-      "id": "LahYDRe"
-    },
-    {
-      "title": "g",
-      "userId": "1",
-      "id": "LPH5Yu-"
-    },
-    {
-      "title": "fgfdgdfg",
-      "userId": "1",
-      "id": "VoRL0wz"
-    },
-    {
-      "title": "wew",
-      "userId": "4",
-      "id": "q6VQnly"
-    },
-    {
-      "title": "g",
-      "userId": "4",
-      "id": "vJSrh3C"
-    },
-    {
-      "title": "g",
-      "userId": "4",
-      "id": "9MOaVpq"
-    },
-    {
-      "title": "g",
-      "userId": "5",
-      "id": "7jn1Mca"
-    },
-    {
-      "title": "g",
-      "userId": "5",
-      "id": "ZOnFEud"
-    },
-    {
-      "title": "g",
-      "userId": "5",
-      "id": "G8Gw0nJ"
-    },
-    {
-      "title": "g",
-      "userId": "5",
-      "id": "Y4gci7I"
-    },
-    {
-      "title": "qqqqqqqqqqqqqqq",
-      "userId": "6",
-      "id": "mOPKZVD"
+      "id": "Yxt78bX"
     }
   ],
   "table": []
