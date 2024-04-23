@@ -77,8 +77,8 @@ export const setAddDocs =(data) => {
    },
     credentials: 'include',
     body: JSON.stringify({
-      title: data.title,
-      owner: data.owner
+      title: data.documentName,
+      userId: data.constructorId
     })})
 .then((res) => checkResponse(res));
 }

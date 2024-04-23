@@ -14,7 +14,7 @@ import Register from "../Register/Register";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import * as MainApi from "../../utils/MainApi";
 import Main from "../Main/Main";
-
+import Table from "../Table/Table";
 import "./App.css";
 
 function App() {
@@ -109,15 +109,18 @@ function App() {
             }
           />
 
-          {/* <Route
+          <Route
             path={"*"}
             element={<PageNotFound setErrorPage={setErrorPage} />}
-          /> */}
+          />
           <Route
-            path="/"
+            path="/form"
             element={<ProtectedRoute element={Main} loggedIn={loggedIn} />}
           />
-
+          <Route
+            path="/table"
+            element={<ProtectedRoute element={Table} loggedIn={loggedIn} />}
+          />
           <Route
             path="/"
             element={loggedIn ? <Navigate to="/" /> : <Login />}
@@ -132,6 +135,12 @@ function App() {
       </Link>
       <Link className="btn" to="/signin">
         Войти
+      </Link>
+      <Link className="btn" to="/form">
+        Форма
+      </Link>
+      <Link className="btn" to="/table">
+        Таблица
       </Link>
       <button type="button" onClick={handleLogout}>
         {" "}

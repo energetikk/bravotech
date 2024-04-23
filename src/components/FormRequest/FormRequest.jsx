@@ -1,67 +1,3 @@
-// import React, { useState, useEffect } from "react";
-
-// function FormRequest({ onSubmit }) {
-//   const [constructors, setConstructors] = useState([]);
-//   const [selectedConstructor, setSelectedConstructor] = useState("");
-//   const [documentName, setDocumentName] = useState("");
-
-//   useEffect(() => {
-//     setConstructors([
-//       { id: "1", name: "Конструктор 1" },
-//       { id: "2", name: "Конструктор 2" },
-//       { id: "3", name: "Конструктор 3" },
-//     ]);
-//   }, []);
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     if (onSubmit) {
-//       onSubmit({
-//         constructorId: selectedConstructor,
-//         documentName: documentName,
-//       });
-//     }
-
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="request-form">
-//       <div className="form-group">
-//         <label htmlFor="constructorSelect">Выберите конструктора:</label>
-//         <select
-//           id="constructorSelect"
-//           value={selectedConstructor}
-//           onChange={(e) => setSelectedConstructor(e.target.value)}
-//           required
-//         >
-//           <option value="">Выберите...</option>
-//           {constructors.map((constructor) => (
-//             <option key={constructor.id} value={constructor.id}>
-//               {constructor.name}
-//             </option>
-//           ))}
-//         </select>
-//       </div>
-//       <div className="form-group">
-//         <label htmlFor="documentName">Название документа:</label>
-//         <input
-//           id="documentName"
-//           type="text"
-//           value={documentName}
-//           onChange={(e) => setDocumentName(e.target.value)}
-//           required
-//         />
-//       </div>
-//       <button type="submit" className="submit-btn">
-//         Отправить запрос
-//       </button>
-//     </form>
-//   );
-// }
-
-// export default FormRequest;
-
-
 import React, { useState, useEffect } from "react";
 import {setAddDocs} from '../../utils/MainApi';
 
@@ -75,7 +11,8 @@ function FormRequest({ onSubmit }) {
     // Функция для загрузки конструкторов из сервера
     const fetchConstructors = async () => {
       try {
-        const response = await fetch('http://localhost:3001/constructors', {
+        const response = await fetch('http://localhost:3001/users', {
+        // const response = await fetch('http://localhost:3001/users', {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -87,7 +24,6 @@ function FormRequest({ onSubmit }) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json(); // Получаем данные в формате JSON
-        console.log(data)
         setConstructors(data); // Обновляем состояние списка конструкторов
       } catch (error) {
         console.error("Ошибка при запросе данных:", error);
@@ -115,8 +51,7 @@ function FormRequest({ onSubmit }) {
         }
         const data = await response.json(); // Получаем данные в формате JSON
         console.log(data)
-        let nameConstructor = data.map((user) => user.name)
-        setDocs(nameConstructor); // Обновляем состояние списка конструкторов
+        setDocs(data); // Обновляем состояние списка конструкторов
       } catch (error) {
         console.error("Ошибка при запросе данных:", error);
       }
@@ -144,8 +79,9 @@ function FormRequest({ onSubmit }) {
     .then(() => {
 
     })
-    .catch((err) => console.log(`Возникла ошибка ${err}`))
+    .catch((err) => console.log(`Выберите свою фамилию из списка ${err}`))
     }
+
 
 
 
