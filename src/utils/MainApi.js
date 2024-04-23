@@ -64,3 +64,21 @@ export const setUserInfo = ({ name, email }) => {
     }),
   }).then((res) => checkResponse(res));
 };
+
+
+
+//Записать добавление документа на сервер
+export const setAddDocs =(data) => {
+  return fetch(`${BASE_URL}docs`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
+   },
+    credentials: 'include',
+    body: JSON.stringify({
+      title: data.title,
+      owner: data.owner
+    })})
+.then((res) => checkResponse(res));
+}

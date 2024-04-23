@@ -109,10 +109,10 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path={"*"}
             element={<PageNotFound setErrorPage={setErrorPage} />}
-          />
+          /> */}
           <Route
             path="/"
             element={<ProtectedRoute element={Main} loggedIn={loggedIn} />}
