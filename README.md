@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Приложение для подачи заявок на закупку документов
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Запуск проекта
 
-In the project directory, you can run:
+После клонирования репозитория, необходимо установить зависимости `npm i`
 
-### `npm start`
+Далее для запуска приложения (фронт+бэксервер) необходимо в терминале написать скрипт: `yarn all`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Задача и требования к решению
+Проект выполнен в качестве тестового задания, основные требования:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Нужно создать web-страницу с формой для заявки. Поля формы: «ФИО конструктора» (выбрать из списка), «Наименование документа» (текст, вводится вручную). Заполнив форму, можно отправить эти данные в Базу Данных;
+- нужно использовать framework React;
+-	значения для списка в поле «ФИО конструктора» должны браться из Базы Данных;
+-	разные конструкторы могут отправить заявки на один и тот же документ (по наименованию документа) и заявки будут учтены в Базе Данных;
+-	если один и тот же конструктор пытается отправить в Базу Данных заявку на документ повторно (т. е. он ранее отправлял заявку с таким же наименованием документа, и она уже учтена в Базе Данных), то отправка игнорируется – выдается ошибка, что «Вы уже отправляли заявку на этот документ, она уже была учтена»;
+-	иные проверки на корректность данных при вводе не нужны;
+-	авторизация и аутентификация конструкторов (пользователей) желательна (то есть страница авторизации);
 
-### `npm test`
+Нужно создать легкий back-end и Базу Данных, в которой хранятся ФИО конструкторов (пользователей), занесенные ими заявки на документы;
+-	для back-end лучше использовать jsonServer и просто файл .json;
+-	по умолчанию, каждый конструктор уже занес в Базу Данных по три заявки на документы (наименования документов любые, можно по аналогии из примеров выше); есть несколько заявок от разных конструкторов, где наименования документов совпадают; в Базе Данных 9 заявок;
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Нужно создать web-страницу с таблицей с полями: «Наименование документа» (текст), «Количество заявок» (число). В таблице должны быть отражены текущие данные: на какой документ сколько конструкторов оставили заявки. Таблица должна быть отсортирована по полю «Количество заявок» от большего к меньшему;
+-	нужно использовать framework React;
+- нужно объединить страницу совместно со страницей формы (первый пункт), разбить по вкладкам: вкладка «Форма для заявки» и вкладка «Сводная таблица»;
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Ближайшие планы
+- Существенно доработать UX/UI
+- Написать полноценный бэкенд на Express.js
+- Деплой проекта на удаленный сервер
+- Переделать оформление описания проекта в файле Readme.md
+  
